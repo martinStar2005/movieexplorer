@@ -2,6 +2,19 @@ API_KEY = "04f84d8e9c8afcf11aee3a3c46785e77"
 BASE_URL = "https://api.themoviedb.org/3"
 
 
+function loadComponent(id, file) {
+    fetch(file)
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById(id).innerHTML = data;
+        });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadComponent("navbar", "navbar.html");
+
+});
+
 const buttonClickMore = document.querySelector('.btn-more');
 const submitButton = document.querySelector('.submit');
 
