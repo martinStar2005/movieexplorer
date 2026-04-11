@@ -11,13 +11,21 @@ body {
     overflow-x: hidden;
 }
 
-#main-upcoming {
+#main-popular {
     padding: 20px;
     margin: 10px;
     width: 100%;
 }
 
-#main-upcoming > div {
+#main-popular h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.3rem;
+    color: #ff6347;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#main-popular > div {
     width: 90%;
     margin: 40px auto;
     display: grid;
@@ -25,8 +33,7 @@ body {
     gap: 30px;
 }
 
-#main-upcoming > div > div {
-
+#main-popular > div > div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,38 +42,31 @@ body {
     cursor: pointer;
 }
 
-#main-upcoming > div > div:hover {
+#main-popular > div > div:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
-#main-upcoming > div div img {
+#main-popular > div div img {
     width: 200px;
     height: 300px;
     object-fit: cover;
     border-radius: 10px;
 }
 
-#main-upcoming > div div > p {
+#main-popular > div div > p {
     font-size: 1rem;
     text-align: center;
 }
 
-#main-upcoming > div > div > h3 {
+#main-popular > div > div > h3 {
     font-size: 1.1rem;
     font-weight: bold;
     text-align: center;
     margin-bottom: 5px;
 }
 
-#main-upcoming > div > div > p strong {
-    color: #ff6347;
+#main-popular p i {
+    color: #edff4c;
 }
 
-#main-upcoming h1 {
-    text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin: 30px 0;
-    font-size: 2.3rem;
-    color: #ff6347;
-}
