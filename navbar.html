@@ -8,15 +8,36 @@
 </head>
 <body>
     <nav>
-            <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./popular.html">Popular</a></li>
-            </ul>
-            <img src="./image/logoweb.png" alt="logo-image" class="logo">
-            <ul>
-                <li><a href="#">Top Rated</a></li>
-                <li><a href="./upcoming.html">Upcoming</a></li>
-            </ul>
-        </nav>
+        <ul class="left">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./popular.html">Popular</a></li>
+        </ul>
+
+        <img src="./image/logoweb.png" alt="logo-image" class="logo">
+
+        <ul class="right">
+            <li><a href="./toprated.html">Top Rated</a></li>
+            <li><a href="./upcoming.html">Upcoming</a></li>
+        </ul>
+
+        <!-- HAMBURGER -->
+        <div class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- OVERLAY MENU -->
+    <div class="overlay" id="overlay">
+        <div class="close" id="close">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <div class="menu">
+            <a href="./index.html">Home</a>
+            <a href="./popular.html">Popular</a>
+            <a href="./toprated.html">Top Rated</a>
+            <a href="./upcoming.html">Upcoming</a>
+        </div>
+    </div>
 </body>
 </html>

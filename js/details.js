@@ -1,18 +1,50 @@
-API_KEY = "04f84d8e9c8afcf11aee3a3c46785e77"
-BASE_URL = "https://api.themoviedb.org/3"
+const API_KEY = "04f84d8e9c8afcf11aee3a3c46785e77";
+const BASE_URL = "https://api.themoviedb.org/3";
 
-function loadComponent(id, file) {
+function loadComponent(id, file, callback) {
     fetch(file)
         .then(res => res.text())
         .then(data => {
             document.getElementById(id).innerHTML = data;
+            if (callback) callback(); 
         });
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    loadComponent("navbar", "navbar.html");
+    loadComponent("navbar", "navbar.html", initApp);
+    loadComponent("footer", "footer.html");
+
+    function initApp() {
+        initHamburger();
+    }
+
+    
+    function initHamburger() {
+
+        const hamburger = document.getElementById("hamburger");
+        const overlay = document.querySelector(".overlay");
+        const closeBtn = document.querySelector(".close");
+
+        if (!hamburger || !overlay || !closeBtn) return;
+
+        hamburger.addEventListener("click", () => {
+            overlay.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        });
+
+        closeBtn.addEventListener("click", () => {
+            overlay.style.display = "none";
+            document.body.style.overflow = "auto";
+        });
+
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                overlay.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        });
+    }
 
     const params = new URLSearchParams(window.location.search);
     const movieId = params.get("id");
@@ -26,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.innerHTML = `
                 <h1> Movie title : <span>${movie.title}</span></h1>
                 <div class="description">
-                    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                    ${movie.poster_path ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} poster">` : "<p>No poster available</p>"}
                     <p>${movie.overview}</p>
 
                     <div class="overview">

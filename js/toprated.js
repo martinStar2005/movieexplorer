@@ -45,51 +45,41 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-    const main = document.querySelector("#main-popular");
-
-    fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`)
+    fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`)
         .then(res => res.json())
         .then(data => {
+            const main = document.querySelector("#main-toprated");
 
             if (!data.results || data.results.length === 0) {
-                main.innerHTML = "<p>No popular movies found.</p>";
+                main.innerHTML = "<p>No top rated movies found.</p>";
                 return;
-            }
-
-            const grid = document.createElement("div");
-            grid.className = "movie-grid";
-
-            data.results.forEach(movie => {
-
-                const card = document.createElement("div");
-                card.className = "movie-card";
-
-                card.innerHTML = `
-                    ${movie.poster_path 
-                        ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">`
-                        : `<img src="./image/no_image.png" alt="No image available">`
-                    }
-
-                    <h3>${movie.title}</h3>
-
-                    <p><i class="fa-solid fa-calendar"></i> ${movie.release_date || "N/A"}</p>
-
-                    <p><i class="fa-solid fa-star"></i> 
-                        ${movie.vote_average ? movie.vote_average + " / 10" : "No rating"}
-                    </p>
-                    
-                `;
-
-                grid.appendChild(card);
-                card.addEventListener("click", () => {
+            } else {
+                const grid = document.createElement("div");
+                grid.className = "movie-grid";
+                data.results.forEach(movie => {
+                    const card = document.createElement("div");
+                    card.className = "movie-card";
+                    card.innerHTML = `
+                        ${movie.poster_path 
+                            ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">` 
+                            : `<img src="./image/placeholder.jpg" alt="${movie.title}">`
+                        }
+                        <h3>${movie.title}</h3>
+                        <p><i class="fa-solid fa-calendar"></i> ${movie.release_date || "N/A"}</p>
+                        <p><i class="fa-solid fa-star"></i> 
+                            ${movie.vote_average ? movie.vote_average + " / 10" : "No rating"}
+                        </p>
+                    `;
+                    grid.appendChild(card);
+                    card.addEventListener("click", () => {
                         window.location.href = `details.html?id=${movie.id}`;
-                    })
-            });
-
-            main.appendChild(grid);
+                    }
+        )});
+                main.appendChild(grid);
+            }
         })
         .catch(error => {
-            console.error("Error fetching popular movies:", error);
+            console.error("Error fetching top rated movies:", error);
             main.innerHTML = "<p>Something went wrong.</p>";
         });
 
