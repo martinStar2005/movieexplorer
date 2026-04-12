@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 card.innerHTML = `
                     ${movie.poster_path 
-                        ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">`
+                        ? `<img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" srcset="https://image.tmdb.org/t/p/w200${movie.poster_path} 1x, https://image.tmdb.org/t/p/w400${movie.poster_path} 2x" alt="${movie.title} poster">`
                         : `<img src="./image/no_image.png" alt="No image available">`
                     }
 
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             main.appendChild(grid);
         })
         .catch(error => {
-            console.error("Error fetching popular movies:", error);
+            
             main.innerHTML = "<p>Something went wrong.</p>";
         });
 

@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.innerHTML = `
                 <h1> Movie title : <span>${movie.title}</span></h1>
                 <div class="description">
-                    ${movie.poster_path ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} poster">` : "<p>No poster available</p>"}
+                    ${movie.poster_path ? `<img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" srcset="https://image.tmdb.org/t/p/w200${movie.poster_path} 1x, https://image.tmdb.org/t/p/w400${movie.poster_path} 2x" alt="${movie.title} poster">` : "<p>No poster available</p>"}
                     <p>${movie.overview}</p>
 
                     <div class="overview">
@@ -85,7 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
             main.appendChild(div);
 
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            main.innerHTML = "<p>Failed to load movie details. Please try again later.</p>";});
 
 });
 

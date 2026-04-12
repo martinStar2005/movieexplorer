@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const card = document.createElement("div");
                 card.className = "movie-card";
                 card.innerHTML = `
-                    ${movie.poster_path ? `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">` : '<img src="./image/no_image.png" alt="No image available">'}
+                    ${movie.poster_path ? `<img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" srcset="https://image.tmdb.org/t/p/w200${movie.poster_path} 1x, https://image.tmdb.org/t/p/w400${movie.poster_path} 2x" alt="${movie.title} poster">` : '<img src="./image/no_image.png" alt="No image available">'}
                     <h3>${movie.title}</h3>
                     <p><strong><i class="fa-solid fa-calendar"></i></strong> ${movie.release_date || "N/A"}</p>
                     <p><strong><i class="fa-solid fa-star"></i></strong> ${movie.vote_average ? movie.vote_average + " / 10" : "No rating"}</p>
@@ -76,5 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
             main.appendChild(grid);
         }
         
-    })
-})
+    }).catch(error => {
+        
+        const main = document.querySelector("#main-upcoming");
+        main.innerHTML = "<p>Something went wrong.</p>";
+
+})})
