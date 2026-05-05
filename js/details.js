@@ -1,50 +1,7 @@
 const API_KEY = "04f84d8e9c8afcf11aee3a3c46785e77";
 const BASE_URL = "https://api.themoviedb.org/3";
 
-function loadComponent(id, file, callback) {
-    fetch(file)
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById(id).innerHTML = data;
-            if (callback) callback(); 
-        });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-
-    loadComponent("navbar", "navbar.html", initApp);
-    loadComponent("footer", "footer.html");
-
-    function initApp() {
-        initHamburger();
-    }
-
-    
-    function initHamburger() {
-
-        const hamburger = document.getElementById("hamburger");
-        const overlay = document.querySelector(".overlay");
-        const closeBtn = document.querySelector(".close");
-
-        if (!hamburger || !overlay || !closeBtn) return;
-
-        hamburger.addEventListener("click", () => {
-            overlay.style.display = "flex";
-            document.body.style.overflow = "hidden";
-        });
-
-        closeBtn.addEventListener("click", () => {
-            overlay.style.display = "none";
-            document.body.style.overflow = "auto";
-        });
-
-        overlay.addEventListener("click", (e) => {
-            if (e.target === overlay) {
-                overlay.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-        });
-    }
 
     const params = new URLSearchParams(window.location.search);
     const movieId = params.get("id");
@@ -86,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         })
         .catch(err => {
+            
             main.innerHTML = "<p>Failed to load movie details. Please try again later.</p>";});
 
 });

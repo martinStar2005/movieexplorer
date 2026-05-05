@@ -13,7 +13,7 @@ body {
 #main {
     padding: 20px;
     margin: 10px;
-    width: 100%;
+    max-width: 100%;
 }
 
 #main > div {
